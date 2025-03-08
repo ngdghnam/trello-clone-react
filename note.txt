@@ -1,0 +1,28 @@
+JSX là gì?
+Là một biểu thức mở rộng cú pháp --> có thể viết được những code html trong Javascript 
+Bản chất cuả JSX --> Trong trình biên dịch sẽ biến đổi về JS thuần chứ ko hiểu JSX 
+
+JSX Fragment: <> </> --> tránh dư thừa thẻ div, bọc các element vào 1 thẻ cha 
+Để xài css thường sẽ xài class nhưng đối vơi jsx thì xài className --> camelCase 
+Tất cả các thẻ trong JSX bắt buộc phải có mở và đóng --> <p></p> 
+
+JS Curly Braces 
+Tạo biến thì dùng camelCase ko dùng PascalCase: const camelCase = "camelCase"  
+Import thì dùng PascalCase thay vì camelCase: import PascalCase from "./PascalCase"
+
+JSX là dành cho React Component, JS là dành cho các file js thuần 
+
+SEMANTIC VERSIONING là gì? 
+Semantic Versioning (SemVer) là một quy ước quốc tế cho việc đặt tên và quản lý phiên bản phần mềm. 
+SemVer giúp các nhà phát triển và người dùng dễ dàng hiểu và kiểm soát thay đổi 
+trong phiên bản phần mềm một cách cụ thể. 
+Nó được đặt ra bởi Tom Preston-Werner (co-founder github) 
+và có nguồn gốc từ việc quản lý phiên bản trong mã nguồn mở.
+Ví dụ 4.7.6 
+4: Major Version - Đây là số đầu tiên trong phiên bản và tăng lên mỗi khi có thay đổi không tương thích ngược với phiên bản trước đó. Khi số này tăng, có thể xuất hiện sự thay đổi lớn trong tính năng hoặc cấu trúc của phần mềm.
+7: Minor Version - thể hiện phiên bản có thay đổi tính năng hoặc bổ sung tính năng mà không làm hỏng tính tương thích ngược.
+6: Patch -  tăng khi có bản vá lỗi hoặc các sửa đổi nhỏ không làm thay đổi tính năng hoặc tương thích ngược.
+
+BUG FLICKERING - #27651 github
+
+BOX là 1 component của material 
