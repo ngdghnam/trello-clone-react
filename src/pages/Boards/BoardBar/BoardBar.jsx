@@ -13,7 +13,11 @@ import Tooltip from "@mui/material/Tooltip";
 import Button from "@mui/material/Button";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 
-function BoardBar() {
+import { capitalizeFirstLetter } from "~/utils/formatters";
+
+function BoardBar({ board }) {
+  // const { board } = props; //Object destructoring
+
   const theme = useTheme(); // Dynamically get the active theme
 
   const MENU_STYLES = {
@@ -61,14 +65,14 @@ function BoardBar() {
         <Chip
           sx={MENU_STYLES}
           icon={<DashboardIcon />}
-          label="Hoai Nam Dev Board"
+          label={board?.title}
           clickable
           // onClick={() => {}}
         />
         <Chip
           sx={MENU_STYLES}
           icon={<VpnLockIcon />}
-          label="Public/ Private Workspace"
+          label={capitalizeFirstLetter(board?.type)}
           clickable
           // onClick={() => {}}
         />

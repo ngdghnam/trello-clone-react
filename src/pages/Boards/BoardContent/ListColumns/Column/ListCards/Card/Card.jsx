@@ -9,30 +9,20 @@ import GroupIcon from "@mui/icons-material/Group";
 import ModeCommentIcon from "@mui/icons-material/ModeComment";
 import AttachmentIcon from "@mui/icons-material/Attachment";
 
-const Card = ({ temporaryHideMedia }) => {
+const Card = ({ card }) => {
   const theme = useTheme();
+
+  const shouldShowCardAction = () => {
+    return (
+      !!card?.memberIds?.length ||
+      !!card?.comments?.length ||
+      !!card?.attachments?.length
+    );
+  };
 
   // Determine text and background colors based on theme mode
   const bgColor = theme.palette.mode === "dark" ? "#0B192C" : "#ffffff";
   const textColor = theme.palette.mode === "dark" ? "white" : "inherit";
-
-  if (temporaryHideMedia) {
-    return (
-      <MuiCard
-        sx={{
-          cursor: "pointer",
-          boxShadow: "0 1px 1px rgba(0,0,0,0.2)",
-          overflow: "unset",
-          backgroundColor: bgColor,
-          color: textColor,
-        }}
-      >
-        <CardContent sx={{ p: 1.5, "&:last-child": { p: 1.5 } }}>
-          <Typography color="inherit">Card Test 01</Typography>
-        </CardContent>
-      </MuiCard>
-    );
-  }
 
   return (
     <MuiCard
@@ -44,37 +34,43 @@ const Card = ({ temporaryHideMedia }) => {
         color: textColor,
       }}
     >
-      <CardMedia
-        sx={{ height: 140 }}
-        image="https://i.pinimg.com/736x/cc/9f/60/cc9f60f7fea009c75f138a07a9f14d74.jpg"
-        title="green iguana"
-      />
+      {card?.cover && <CardMedia sx={{ height: 140 }} image={card?.cover} />}
       <CardContent sx={{ p: 1.5, "&:last-child": { p: 1.5 } }}>
-        <Typography color="inherit">Nguyen Dang Hoai Nam</Typography>
+        <Typography>{card?.title}</Typography>
       </CardContent>
-      <CardActions sx={{ p: "0 4px 8px 4px" }}>
-        <Button
-          startIcon={<GroupIcon sx={{ color: textColor }} />}
-          size="small"
-          sx={{ color: textColor }}
-        >
-          20
-        </Button>
-        <Button
-          startIcon={<ModeCommentIcon sx={{ color: textColor }} />}
-          size="small"
-          sx={{ color: textColor }}
-        >
-          15
-        </Button>
-        <Button
-          startIcon={<AttachmentIcon sx={{ color: textColor }} />}
-          size="small"
-          sx={{ color: textColor }}
-        >
-          10
-        </Button>
-      </CardActions>
+      {shouldShowCardAction() && (
+        <CardActions sx={{ p: "0 4px 8px 4px" }}>
+          {!!card?.memberIds?.length && (
+            <Button
+              startIcon={<GroupIcon sx={{ color: textColor }} />}
+              size="small"
+              sx={{ color: textColor }}
+            >
+              {card?.memberIds?.length}
+            </Button>
+          )}
+
+          {!!card?.comments?.length && (
+            <Button
+              startIcon={<ModeCommentIcon sx={{ color: textColor }} />}
+              size="small"
+              sx={{ color: textColor }}
+            >
+              {card?.comments?.length}
+            </Button>
+          )}
+
+          {!!card?.attachments?.length && (
+            <Button
+              startIcon={<AttachmentIcon sx={{ color: textColor }} />}
+              size="small"
+              sx={{ color: textColor }}
+            >
+              {card?.attachments?.length}
+            </Button>
+          )}
+        </CardActions>
+      )}
     </MuiCard>
   );
 };

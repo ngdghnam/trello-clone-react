@@ -17,10 +17,25 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddCardIcon from "@mui/icons-material/AddCard";
 import DragHandleIcon from "@mui/icons-material/DragHandle";
 import ListCards from "./ListCards/ListCards";
+import { mapOrder } from "~/utils/sorts";
+
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+
 // import { useTheme } from "@mui/material/styles";
 
-const Column = () => {
+const Column = ({ column }) => {
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id: column._id, data: { ...column } });
+
+  const dndKitColumnStyles = {
+    // touchAction: "none",
+    transform: CSS.Translate.toString(transform),
+    transition,
+  };
+
   // const theme = useTheme(); // Dynamically get the active theme
+  const orderedCards = mapOrder(column?.cards, column?.cardOrderIds, "_id");
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -32,6 +47,10 @@ const Column = () => {
   };
   return (
     <Box
+      ref={setNodeRef}
+      style={dndKitColumnStyles}
+      {...attributes}
+      {...listeners}
       sx={{
         minWidth: "300px",
         maxWidth: "300px",
@@ -71,7 +90,7 @@ const Column = () => {
             color: (theme) => theme.palette.primary.main,
           }}
         >
-          Column Title
+          {column?.title}
         </Typography>
         <Box>
           <Tooltip title="More options">
@@ -125,20 +144,20 @@ const Column = () => {
               <ListItemIcon>
                 <Cloud fontSize="small" />
               </ListItemIcon>
-              <ListItemText>Archive This Collumn</ListItemText>
+              <ListItemText>Archive This Column</ListItemText>
             </MenuItem>
             <MenuItem>
               <ListItemIcon>
                 <DeleteForeverIcon fontSize="small" />
               </ListItemIcon>
-              <ListItemText>Remove This Collumn</ListItemText>
+              <ListItemText>Remove This Column</ListItemText>
             </MenuItem>
           </Menu>
         </Box>
       </Box>
 
       {/* List Card */}
-      <ListCards></ListCards>
+      <ListCards cards={orderedCards}></ListCards>
 
       {/* Footer */}
       <Box
