@@ -14,7 +14,7 @@ RUN yarn install --frozen-lockfile
 COPY . .
 
 # Expose the port React app runs on
-EXPOSE 3000
+EXPOSE 5173
 
 # Set the default command to run the app
 CMD ["yarn", "dev"]
