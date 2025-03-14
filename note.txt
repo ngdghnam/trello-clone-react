@@ -26,3 +26,5 @@ Ví dụ 4.7.6
 BUG FLICKERING - #27651 github
 
 BOX là 1 component của material 
+
+RUN CONTAINER: docker run -p 5173:5173 trello-clone 
