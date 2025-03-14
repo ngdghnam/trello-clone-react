@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 5173
 
 # Set the default command to run the app
-CMD ["yarn", "dev"]
+CMD ["yarn", "dev", "--host", "0.0.0.0"]

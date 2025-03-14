@@ -1,13 +1,12 @@
-version: "3.8"
+version: '3.4'
+
 services:
   trelloweb:
-    build: .
-    ports:
-      - "5173:5173"
-    volumes:
-      - .:/app
-      - /app/node_modules
+    image: trelloweb
+    build:
+      context: trello-web
+      dockerfile: ./Dockerfile
     environment:
-      - NODE_ENV=development
-    stdin_open: true
-    tty: true
+      NODE_ENV: production
+    ports:
+      - 5173:5173
